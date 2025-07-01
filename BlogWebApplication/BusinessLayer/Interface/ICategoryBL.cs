@@ -11,5 +11,6 @@ namespace BusinessLayer.Interface
     public interface ICategoryBL
     {
         Task<Category> CreateAsync(Category category);
+        Task<IEnumerable<Category>> GetAllAsync();
     }
 }

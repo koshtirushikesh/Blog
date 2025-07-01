@@ -30,5 +30,14 @@ namespace BlogWebApplication.Controllers
             object data = await _categoryBL.CreateAsync(category);
             return Ok(data);
         }
+
+        [HttpGet("/v1/GetCategorys")]
+        public async Task<IActionResult> GetAllCategory()
+        {
+            IEnumerable<Category> categoryList = await _categoryBL.GetAllAsync();
+            return Ok(categoryList);
+        }
+
+        
     }
 }

@@ -21,5 +21,10 @@ namespace BusinessLayer.Services
         {
             return await _categoryRepository.CreateAsync(category);
         }
+
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+            return await _categoryRepository.GetAllAsync();
+        }
     }
 }

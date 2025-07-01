@@ -1,4 +1,5 @@
-﻿using RepositoryLayer.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Model;
 using System;
@@ -16,6 +17,7 @@ namespace RepositoryLayer.Services
         {
             _dbContext = dbContext;
         }
+
         public async Task<Category> CreateAsync(Category category)
         {
             category.CreatedOn = DateTime.Now;
@@ -23,6 +25,11 @@ namespace RepositoryLayer.Services
             await _dbContext.Categories.AddAsync(category);
             await _dbContext.SaveChangesAsync();
             return category;
+        }
+
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+            return await _dbContext.Categories.ToListAsync();
         }
     }
 }
