@@ -18,7 +18,7 @@ namespace BlogWebApplication.Controllers
             _categoryBL = categoryBL;
         }
 
-        [HttpPost("/v1/CreateCategory")]
+        [HttpPost("/Api/v1/CreateCategory")]
         public  async Task<IActionResult> CreateCategory(CreateCategoryRequestDto request)
         {
             Category category = new Category()
@@ -31,20 +31,25 @@ namespace BlogWebApplication.Controllers
             return Ok(data);
         }
 
-        [HttpGet("/v1/GetCategorys")]
+        [HttpGet("/Api/v1/GetCategorys")]
         public async Task<IActionResult> GetAllCategory()
         {
             IEnumerable<Category> categoryList = await _categoryBL.GetAllAsync();
             return Ok(categoryList);
         }
 
-        [HttpGet("v1/GetCatgoryById")]
+        [HttpGet("/Api/v1/GetCatgoryById")]
         public async Task<IActionResult> GetCategoryById(Guid id)
         {
             Category category = await _categoryBL.GetCategoryById(id);
             return Ok(category);
         }
 
-
+        [HttpPut("/Api/v1/UpdateCatgory")]
+        public async Task<IActionResult> UpdateCategory(Category category)
+        {
+            Category categoryNew = await _categoryBL.UpdateCategory(category);
+            return Ok(categoryNew);
+        }
     }
 }

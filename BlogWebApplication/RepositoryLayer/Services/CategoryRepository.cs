@@ -34,7 +34,18 @@ namespace RepositoryLayer.Services
 
         public async Task<Category?> GetCategoryById(Guid id)
         {
-            return await _dbContext.Categories.FirstOrDefaultAsync(x=> x.Id == id);
+            return await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<Category> UpdateCategory(Category category)
+        {
+            var oldData = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == category.Id);
+            if (oldData != null)
+            {
+                _dbContext.Entry(oldData).CurrentValues.SetValues(category);
+                await _dbContext.SaveChangesAsync();
+            }
+            return category;
         }
     }
 }

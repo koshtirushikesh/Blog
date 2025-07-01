@@ -31,5 +31,10 @@ namespace BusinessLayer.Services
         {
             return await _categoryRepository.GetCategoryById(id);
         }
+
+        public async Task<Category> UpdateCategory(Category category)
+        {
+            return await _categoryRepository.UpdateCategory(category);
+        }
     }
 }
