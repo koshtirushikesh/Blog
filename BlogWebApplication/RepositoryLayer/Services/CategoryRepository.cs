@@ -31,5 +31,10 @@ namespace RepositoryLayer.Services
         {
             return await _dbContext.Categories.ToListAsync();
         }
+
+        public async Task<Category?> GetCategoryById(Guid id)
+        {
+            return await _dbContext.Categories.FirstOrDefaultAsync(x=> x.Id == id);
+        }
     }
 }

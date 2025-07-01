@@ -38,6 +38,13 @@ namespace BlogWebApplication.Controllers
             return Ok(categoryList);
         }
 
-        
+        [HttpGet("v1/GetCatgoryById")]
+        public async Task<IActionResult> GetCategoryById(Guid id)
+        {
+            Category category = await _categoryBL.GetCategoryById(id);
+            return Ok(category);
+        }
+
+
     }
 }
