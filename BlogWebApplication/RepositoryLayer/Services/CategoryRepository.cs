@@ -20,8 +20,8 @@ namespace RepositoryLayer.Services
         {
             category.CreatedOn = DateTime.Now;
             category.UpdatedOn = DateTime.Now;
-            _dbContext.Categories.Add(category);
-            _dbContext.SaveChanges();
+            await _dbContext.Categories.AddAsync(category);
+            await _dbContext.SaveChangesAsync();
             return category;
         }
     }
