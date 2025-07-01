@@ -40,6 +40,13 @@ namespace BlogWebApplication
 
             app.UseHttpsRedirection();
 
+            app.UseCors(option =>
+            {
+                option.AllowAnyHeader();
+                option.AllowAnyOrigin();
+                option.AllowAnyMethod();
+            });
+
             app.UseAuthorization();
 
 
