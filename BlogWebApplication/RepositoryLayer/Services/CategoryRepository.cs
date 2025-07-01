@@ -39,13 +39,25 @@ namespace RepositoryLayer.Services
 
         public async Task<Category> UpdateCategory(Category category)
         {
-            var oldData = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == category.Id);
+            Category? oldData = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == category.Id);
             if (oldData != null)
             {
                 _dbContext.Entry(oldData).CurrentValues.SetValues(category);
                 await _dbContext.SaveChangesAsync();
             }
             return category;
+        }
+
+        public async Task<bool> DeleteCategory(Guid id)
+        {
+            Category? data = await _dbContext.Categories.FirstOrDefaultAsync(x=> x.Id == id);
+            if (data != null)
+            {
+                _dbContext.Categories.Remove(data);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

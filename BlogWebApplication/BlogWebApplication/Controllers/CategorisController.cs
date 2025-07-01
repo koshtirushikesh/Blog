@@ -51,5 +51,12 @@ namespace BlogWebApplication.Controllers
             Category categoryNew = await _categoryBL.UpdateCategory(category);
             return Ok(categoryNew);
         }
+
+        [HttpDelete("/Api/v1/DeleteCategory")]
+        public async Task<IActionResult> DeleteCategory(Guid id)
+        {
+            bool result = await _categoryBL.DeleteCategory(id);
+            return Ok(result);
+        }
     }
 }

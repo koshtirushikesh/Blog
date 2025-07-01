@@ -22,6 +22,11 @@ namespace BusinessLayer.Services
             return await _categoryRepository.CreateAsync(category);
         }
 
+        public async Task<bool> DeleteCategory(Guid id)
+        {
+            return await _categoryRepository.DeleteCategory(id);
+        }
+
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
             return await _categoryRepository.GetAllAsync();

@@ -13,5 +13,6 @@ namespace RepositoryLayer.Interface
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category> GetCategoryById(Guid id);
         Task<Category> UpdateCategory(Category category);
+        Task<bool> DeleteCategory(Guid id);
     }
 }
